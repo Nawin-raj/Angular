@@ -1,0 +1,89 @@
+//Create two componnets in angular and then excecute these files
+//parent component code -->it has 2 file  app.component.ts and html
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  NAME;
+  parentdata=" Angular";
+  employees=["nawin","chinnu","pravalika"];
+  ChildCurrentValue="";
+
+  sendvalue(emp){
+    this.NAME=emp;
+    console.log("hi")
+  }
+  GetOutPutval(selected){
+    if(selected){
+      this.ChildCurrentValue="value received from child "+selected;
+    }
+  }
+  
+  }
+  -------------------------------------------
+  <h2>Parent component</h2>
+<div>
+    <table border="1px">
+        <tr *ngFor ="let emp of employees">
+            <td>
+            {{emp}}
+            </td>
+            <td>
+                <button (click)="sendvalue(emp)">Click</button>
+            </td>
+            </tr>
+    </table>
+    </div>
+    <h4>{{ChildCurrentValue}}</h4>
+<!--<app-child1 [name]="parentdata"></app-child1>-->
+<!--<app-child1 [inputname]="NAME" ></app-child1>-->
+<app-child1    [name]="parentdata"    [inputname]="NAME"  (outputToParent)="GetOutPutval($event)"></app-child1>
+----------------------parent done----------------
+////child component code -->it has 3 file  app.component.ts and htm, css
+
+import { Component, OnInit, Input, Output,EventEmitter } from '@angular/core';
+
+
+@Component({
+  selector: 'app-child1',
+  templateUrl: './child1.component.html',
+  styleUrls: ['./child1.component.css']
+})
+export class Child1Component  {
+  @Input()name:string;
+  @Input()inputname:string;
+
+  @Output() outputToParent= new EventEmitter();
+
+  NotificationToParent(selected) {
+ this.outputToParent.emit(selected);
+ console.log(selected);
+
+  }
+  
+
+}
+---------------------------------
+
+<div>
+<p> I am child: I received  text "" {{name}}"" from parent</p>
+<h4>Selected name:  {{inputname}}</h4>
+<button (click)="NotificationToParent(inputname)">Send value to parent</button>
+
+</div>
+-------------------------------------
+div{
+    padding-top: 30px;
+    padding-left: 50px;
+    text-align: center;
+    background-color: chartreuse;
+    width: 700px;
+    height: 200px;
+    border: 2px solid 
+}
+
