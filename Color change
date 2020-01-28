@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+<style>
+
+#colordiv1{
+  margin:20px auto;
+  width:200px;
+  height:150px;
+  background-color:cyan;
+  border: 1px solid black;
+  text-align:center;
+
+}
+
+#colordiv2{
+  margin:40px auto;
+  width:150px;
+  height:120px;
+  background-color:cyan;
+  border: 1px solid black;
+  text-align:center;
+
+}
+
+#colordiv3{
+  margin:40px auto;
+  width:130px;
+  height:100px;
+  border: 1px solid black;
+  text-align:center;
+
+}
+p{
+ font-size:15px;
+ margin:6px auto;
+ text-align:center;
+
+}
+.slider{
+   width:200px;
+   height:10px;
+   background-color:green;
+   border-radius:20px;
+   -webkit-appearance:none;
+    opacity:0.9;
+outline:0;
+}
+.slider:hover{
+   background-color:yellow;
+ opacity:0.5;
+
+}
+
+.slider::-webkit-slider-thumb{
+-webkit-appearance:none;
+appearance:none;
+width:10px;
+height:10px;
+background-color:red;
+cursor:  url(Koala.jpg), auto;
+border-radius:20px;
+  }
+</style>
+</head>
+
+<body bgcolor="cyan">
+
+<h1>Color value : <span id="output"</span></h1>
+
+ <div>
+<label>Red</label> <input type="range" min="0" max="255",value="1" id="redbar" class="slider"><br><br>
+    
+<label>Green </label><input type="range" min="0" max="255",value="1" id="greenbar" class="slider"><br><br>
+
+    
+<label>blue </label><input type="range" min="0" max="255",value="1" id="bluebar" class="slider">
+</div>
+ <div id="colordiv1">
+ <p><span id="p1"</span></p>
+ </div>
+
+ <div id="colordiv2">
+ <p> <span id="p2"</span></p>
+ </div>
+ <div id="colordiv3">
+ <p> <span id="p3"</span></p>
+ </div>
+
+<script>
+function changecolor(){
+let red=document.getElementById("redbar").value;
+let green=document.getElementById("greenbar").value;
+let blue=document.getElementById("bluebar").value;
+let color='RGB('+red +','+green+',' +blue+')';
+let color1='RGB('+green +','+red+',' +blue+')';
+let color2='RGB('+blue +','+red+',' +green+')';
+
+  
+document.getElementById("output").innerHTML=color;
+document.getElementById("p1").innerHTML=color;
+document.getElementById("p2").innerHTML=color;
+document.getElementById("p3").innerHTML=color;
+
+document.getElementById("colordiv1").style.backgroundColor=color;
+document.getElementById("colordiv2").style.backgroundColor=color1;
+document.getElementById("colordiv3").style.backgroundColor=color2;
+
+}
+document.getElementById("redbar").addEventListener('input',changecolor);
+document.getElementById("greenbar").addEventListener('input',changecolor);
+document.getElementById("bluebar").addEventListener('input',changecolor);
+
+
+</script>
+</body>
+</html>
