@@ -1,0 +1,27 @@
+let cleanroom=function(){
+    return new Promise(function(resolve,reject){
+        //one way
+     //   setTimeout( resolve,3000,"room cleaned");
+       //second way
+       setTimeout(function(){
+        resolve("room cleaned")
+       },1000)
+       
+    })
+};
+
+
+let garbageclean=function(){
+    return new Promise(function(resolve,reject){
+        setTimeout( resolve,2000,"removed the garbage");
+    })
+};
+
+let winIcecream=function(message){
+    return new Promise(function(resolve,reject){
+        setTimeout( resolve,3000,"i won ice cream");
+    })
+};
+
+Promise.race([cleanroom(),garbageclean(),winIcecream()]).then(function(data){
+     console.log(data);});
