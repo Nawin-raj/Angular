@@ -1,0 +1,21 @@
+//prototype pattern
+//In javaScaript every object shares some common memory called prototype., for memory saving
+//In this code we created function using protype, so if u write like this this function is stored in object 
+//protype so that only one function will be created, If u create 100 objects only one function will created
+//and that is shared among all onjects
+
+var Employee=function(name,company,salary){
+    this.name=name;
+    this.company=company;
+    this.salary=salary;
+    if(typeof this.printinfo !=='function'){
+        Employee.prototype.printinfo=function (){
+            console.log(this.name+" "+this.company+" "+this.salary)
+        };
+    }
+};
+
+var Emp1=new Employee("Naveen","CTS",25000);
+Emp1.printinfo();
+console.log('printinfo' in Emp1)
+console.log(Emp1.hasOwnProperty('printinfo'));
