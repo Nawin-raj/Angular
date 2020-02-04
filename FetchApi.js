@@ -40,10 +40,10 @@
 </div>
 <div class="tab tab-2">
   ID:<input type="text" name="id" id="id">
-  Name :<input type="text" name="fname" id="name">
+  Name :<input type="text" name="name" id="name">
   Email :<input type="text" name="email" id="email">
   Phone :<input  name="phone" id="phone">
-  <button onclick="editHtmlTbleSelectedRow();">Update</button>
+  <button id="btnsend">Update</button>
  
 </div>
 </div>
@@ -118,6 +118,26 @@ window.onload=fetch('https://jsonplaceholder.typicode.com/users')
     } 
 
 });
+
+document.getElementById('btnsend').addEventListener('click',function(){
+ var id=  document.getElementById('id').value;
+ var name=  document.getElementById('name').value;
+ var email=  document.getElementById('email').value;
+ var phone=  document.getElementById('phone').value;
+ fetch('https://jsonplaceholder.typicode.com/users',{
+                 method:'POST',
+                 headers:{
+                     'Accept':'application/json text/plain',
+                     'Content-Type':'application/json'
+                 },
+                 body: JSON.stringify({
+                     id:id,
+                     name:name,
+                     email:email,
+                     phone:phone
+                 })
+             }).then((res)=>res).then((data)=>console.log(data))
+})
 
  
 </script>
